@@ -4,7 +4,7 @@
       <div class="left">
         <h3 class="title">毕设♂</h3>
         <ul class="nav">
-          <router-link to="/" tag="li">链接</router-link>
+          <router-link to="/" tag="li">分享</router-link>
           <router-link to="/" tag="li">链接</router-link>
           <router-link to="/" tag="li">链接</router-link>
         </ul>
@@ -44,7 +44,7 @@
       justify-content: space-between;
       color: #fff;
       margin: 0 auto;
-      width: 1200px;
+      width: 1100px;
       .left {
         display: flex;
         align-items: center;
