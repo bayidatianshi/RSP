@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 const User = () => import('./views/User');
+const ProductDetail = () => import('./views/ProductDetail');
 const Login = () => import('./components/Login');
 const Register = () => import('./components/Register');
 
@@ -28,6 +29,10 @@ export default new Router({
           component: Register
         }
       ]
+    },
+    {
+      path: '/product/:id',
+      component: ProductDetail
     }
   ]
 })

@@ -7,7 +7,7 @@
     <div class="info">
       <div class="detail">
         <p class="name">{{product.productName}}</p>
-        <p class="descibe">{{product.productDescribe}}</p>
+        <p class="describe">{{product.productDescribe}}</p>
       </div>
       <div class="price">￥{{product.productPrice}}</div>
     </div>
@@ -29,16 +29,15 @@
 <style scoped lang="scss">
   .card {
     background: white;
-    box-shadow: 0 0 10px 3px #ccc;
     width: 230px;
-    margin-bottom: 40px;
-    cursor: pointer;
+    border: 1px solid #f4f4f4;
+    box-sizing: border-box;
     .img-container {
       height: 180px;
       overflow: hidden;
       div {
         height: 100%;
-        transition: transform .4s;
+        transition: transform .2s;
         &:hover {
           transform: scale(1.2)
         }
@@ -54,7 +53,7 @@
         font-size: 18px;
         margin-bottom: 6px;
       }
-      .descibe {
+      .describe {
         font-size: 12px;
         width: 130px;
         overflow: hidden;

@@ -2,7 +2,7 @@
   <div id="header-container">
     <div class="header">
       <div class="left">
-        <h3 class="title">毕设♂</h3>
+        <h3 class="title">毕设</h3>
         <ul class="nav">
           <router-link to="/" tag="li">分享</router-link>
           <router-link to="/" tag="li">链接</router-link>
@@ -33,10 +33,7 @@
 
 <style scoped lang="scss">
   #header-container {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
+    width: 100%;
     height: 60px;
     background-color: #00c3ff;
     .header {
