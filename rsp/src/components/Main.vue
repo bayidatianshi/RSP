@@ -13,13 +13,12 @@
     <div class="content">
       <div class="sort-container">
         <ul>
-          <li class="sort-item">价格</li>
-          <li class="sort-item">评论</li>
-          <li class="sort-item">收藏</li>
+          <li class="sort-item" @click="setSortItem('date')" :class="{active: this.activeOrder.sortItem === 'date'}">时间</li>
+          <li class="sort-item" @click="setSortItem('productPrice')" :class="{active: this.activeOrder.sortItem === 'productPrice'}">价格</li>
         </ul>
         <div class="order">
-          <span>升序<i class="iconfont iconshangsheng"></i></span>
-          <span>降序<i class="iconfont iconxiajiang"></i></span>
+          <span @click="setOrder(true)" :class="{active: this.activeOrder.up}">升序<i class="iconfont iconshangsheng"></i></span>
+          <span @click="setOrder(false)" :class="{active: this.activeOrder.up === false}">降序<i class="iconfont iconxiajiang"></i></span>
         </div>
       </div>
       <ul class="product">
@@ -41,7 +40,8 @@
       productName: '书',
       productDescribe: '好康的书',
       productPrice: '23',
-      type: 0
+      type: 0,
+      date: 1572836395720
     },
     {
       id: '10002',
@@ -49,7 +49,8 @@
       productName: '笔记',
       productDescribe: '好康的笔记',
       productPrice: '5',
-      type: 1
+      type: 1,
+      date: 1572830892746
     },
     {
       id: '10003',
@@ -57,7 +58,8 @@
       productName: '手机',
       productDescribe: '好康的手机',
       productPrice: '1200',
-      type: 4
+      type: 4,
+      date: 1572832847591
     },
     {
       id: '10004',
@@ -65,7 +67,8 @@
       productName: '平板电脑',
       productDescribe: '好康的平板电脑',
       productPrice: '800',
-      type: 4
+      type: 4,
+      date: 1572834329375
     },
     {
       id: '10005',
@@ -73,7 +76,8 @@
       productName: '书',
       productDescribe: '好康的书',
       productPrice: '30',
-      type: 0
+      type: 0,
+      date: 1572831094836
     },
     {
       id: '10006',
@@ -81,7 +85,8 @@
       productName: '相机',
       productDescribe: '好康的相机',
       productPrice: '1300',
-      type: 4
+      type: 4,
+      date: 1572835483820
     },
     {
       id: '10007',
@@ -89,7 +94,8 @@
       productName: '相机',
       productDescribe: '好康的相机',
       productPrice: '1500',
-      type: 4
+      type: 4,
+      date: 1572831794737
     },
     {
       id: '10008',
@@ -97,7 +103,8 @@
       productName: '相机',
       productDescribe: '好康的相机',
       productPrice: '2200',
-      type: 4
+      type: 4,
+      date: 1572830375961
     },
     {
       id: '10009',
@@ -105,7 +112,8 @@
       productName: '相机',
       productDescribe: '好康的相机',
       productPrice: '1100',
-      type: 4
+      type: 4,
+      date: 1572835109395
     },
     {
       id: '10010',
@@ -113,7 +121,8 @@
       productName: '相机',
       productDescribe: '好康的相机',
       productPrice: '1150',
-      type: 4
+      type: 4,
+      date: 1572838396719
     },
     {
       id: '10011',
@@ -121,7 +130,8 @@
       productName: '相机',
       productDescribe: '好康的相机',
       productPrice: '1700',
-      type: 4
+      type: 4,
+      date: 1572831082641
     },
     {
       id: '10012',
@@ -129,7 +139,8 @@
       productName: '相机',
       productDescribe: '好康的相机',
       productPrice: '2300',
-      type: 4
+      type: 4,
+      date: 1572831394732
     }
   ];
   import Card from './Card'
@@ -173,7 +184,11 @@
               }
             ]
           }
-        ]
+        ],
+        activeOrder: {
+          sortItem: '',
+          up: ''
+        }
       }
     },
     methods: {
@@ -183,6 +198,15 @@
       },
       jump(id) {
         this.$router.push(`/product/${id}`);
+      },
+      setSortItem(val) {
+        this.activeOrder.sortItem = val;
+      },
+      setOrder(bool) {
+        this.activeOrder.up = bool;
+      },
+      sortCards(key, up = true) {
+        this.showCards.sort((a, b) => up ? a[key] - b[key] : b[key] - a[key]);
       }
     },
     components: {
@@ -191,6 +215,16 @@
     created() {
       this.allCards = data;
       this.showCards = data;
+    },
+    watch: {
+      activeOrder: {
+        handler(newVal) {
+          if (newVal.sortItem && newVal.up !== '') {
+            this.sortCards(newVal.sortItem, newVal.up);
+          }
+        },
+        deep: true
+      }
     }
   }
 </script>
@@ -259,7 +293,7 @@
         ul {
           display: flex;
           justify-content: space-between;
-          width: 170px;
+          width: 110px;
           .sort-item {
             border: 1px solid #ddd;
             padding: 0 12px;
@@ -267,6 +301,10 @@
             cursor: pointer;
             font-size: 12px;
             &:hover {
+              border-color: #00c3ff;
+              color: #00c3ff;
+            }
+            &.active {
               border-color: #00c3ff;
               color: #00c3ff;
             }
@@ -282,6 +320,9 @@
               font-size: 14px;
             }
             &:hover {
+              color: #00c3ff;
+            }
+            &.active {
               color: #00c3ff;
             }
           }
