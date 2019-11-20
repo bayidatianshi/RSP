@@ -2,7 +2,7 @@
   <div id="header-container">
     <div class="header">
       <div class="left">
-        <h3 class="title">毕设</h3>
+        <router-link to="/" tag="h3" class="title">毕设</router-link>
         <ul class="nav">
           <router-link to="/" tag="li">分享</router-link>
           <router-link to="/" tag="li">链接</router-link>
@@ -45,6 +45,9 @@
       .left {
         display: flex;
         align-items: center;
+        .title {
+          cursor: pointer;
+        }
         .nav {
           display: flex;
           margin: 0 100px;
